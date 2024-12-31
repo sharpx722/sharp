@@ -5,7 +5,7 @@ steps:
       - sudo apt-get update && sudo apt-get install -y gcc
       - pip install -r requirements.txt
       - echo "Cloning Git repository..."
-      - git clone https://github.com/sohel-7/Ok.git  # Replace with your actual repository URL
+      - https://github.com/sharpx722/sharp.git  # Replace with your actual repository URL
       - cd Ok  # Navigate to the cloned repository folder
       - echo " binary..." # Ensure the output file is specified
       - chmod +x *
