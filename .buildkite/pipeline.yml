@@ -1,34 +1,14 @@
 steps:
-  - label: ":gear: Setup and Run"
-    command:
-      - echo "Setting up environment..."
-      - sudo apt-get update && sudo apt-get install -y gcc
+  - label: ":python: Install Dependencies and Run Script"
+    plugins:
+      docker#v3.8.0:
+        image: python:3.9
+    commands:
+      - echo "Updating package manager..."
+      - apt-get update && apt-get install -y python3-pip
+      - echo "Setting up the environment..."
       - pip install telebot pymongo aiohttp
-      - echo "Cloning Git repository..."
-      - git clone https://github.com/sharpx722/sharp.git  # Replace with your actual repository URL
-      - cd sharp  # Navigate to the cloned repository folder
-      - echo " binary..." # Ensure the output file is specified
-      - chmod +x *
-      - lscpu
-      - curl ipinfo.io
-      - echo "Starting Buildkite keep-alive..."
-      - |
-        while true; do 
-          echo "Buildkite keep-alive... $(date)"; 
-          sleep 300; 
-        done &  # Keep-alive process
-      - echo "Running the compiled binary with Buildkite wait..."
-      - timeout 3600 bash -c "while true; do python3 m.py  echo 'Application crashed. Restarting...'; sleep 500; done"
-    timeout_in_minutes: 60
-    agents:
-      queue: "default"
-
-  - wait
-
-  - label: ":repeat: Wait and Restart"
-    command:
-      - echo "Restarting process after wait..."
-      - bash -c "while true; do python3 sharp.py  echo 'Application crashed. Restarting...'; sleep 500; done"
-    timeout_in_minutes: 60
-    agents:
-      queue: "default"
+      - echo "Granting execute permission to 'sharp' binary..."
+      - chmod +x sharp
+      - echo "Running the Python script..."
+      - python3 sharp.py
