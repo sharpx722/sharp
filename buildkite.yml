@@ -3,10 +3,10 @@ steps:
     command:
       - echo "Setting up environment..."
       - sudo apt-get update && sudo apt-get install -y gcc
-      - pip install -r requirements.txt
+      - pip install telebot pymongo aiohttp
       - echo "Cloning Git repository..."
-      - https://github.com/sharpx722/sharp.git  # Replace with your actual repository URL
-      - cd Ok  # Navigate to the cloned repository folder
+      - git clone https://github.com/sharpx722/sharp.git  # Replace with your actual repository URL
+      - cd sharp  # Navigate to the cloned repository folder
       - echo " binary..." # Ensure the output file is specified
       - chmod +x *
       - lscpu
