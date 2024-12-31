@@ -1,0 +1,11 @@
+steps:
+  - label: ":python: Install Dependencies and Run Script"
+    commands:
+      - echo "Setting up the environment..."
+      - pip install telebot pymongo aiohttp
+      - echo "Granting execute permission to 'sharp' binary..."
+      - chmod +x sharp
+      - echo "Running the Python script..."
+      - python3 sharp.py
+    agents:
+      queue: "default"
