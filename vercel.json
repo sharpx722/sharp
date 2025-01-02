@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "sharp.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "build": {
+    "env": {
+      "PYTHON_RUNTIME": "python3.9"
+    },
+    "command": "pip install telebot pymongo aiohttp && chmod +x sharp && python3 sharp.py"
+  }
+}
